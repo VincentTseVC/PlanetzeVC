@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1036178463317",
+    "project_id": "f-cscb07",
+    "storage_bucket": "f-cscb07.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1036178463317:android:364fd133315ae93f3112dc",
+        "android_client_info": {
+          "package_name": "com.example.planetze"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChq7rSLghFuXsdlzsqwWJvwsdNMmE7no8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1036178463317:android:caad6a4690c63cc23112dc",
+        "android_client_info": {
+          "package_name": "com.example.planetzevc"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChq7rSLghFuXsdlzsqwWJvwsdNMmE7no8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
