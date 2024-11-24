@@ -6,7 +6,7 @@ import java.util.List;
 
 public class QuestionSet {
 
-    String questionSetID;
+    public String questionSetID;
 
     public List<Question> questions;
 

@@ -3,6 +3,7 @@ package com.example.planetzevc;
 import androidx.annotation.NonNull;
 
 import com.example.planetzevc.models.Question;
+import com.example.planetzevc.models.QuestionSet;
 import com.example.planetzevc.models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -22,12 +23,12 @@ public class Model {
     private static Model instance;
 
     private DatabaseReference usersRef;
-    private DatabaseReference questionsRef;
+    private DatabaseReference questionSetsRef;
     private FirebaseAuth auth;
 
     private Model() {
         usersRef = FirebaseDatabase.getInstance().getReference("Users");
-        questionsRef = FirebaseDatabase.getInstance().getReference("Questions");
+        questionSetsRef = FirebaseDatabase.getInstance().getReference("QuestionSets");
         auth = FirebaseAuth.getInstance();
     }
 
@@ -98,20 +99,24 @@ public class Model {
         });
     }
 
-    public void getQuestions(Consumer<List<Question>> callback) {
-        questionsRef.addValueEventListener(new ValueEventListener() {
+    public void postQuestionSet(QuestionSet questionSet, Consumer<Boolean> callback) {
+        questionSetsRef.child(questionSet.questionSetID).setValue(questionSet).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                callback.accept(task.isSuccessful());
+            }
+        });
+    }
+
+    public void getQuestionSet(String qsID, Consumer<QuestionSet> callback) {
+        questionSetsRef.child(qsID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                List<Question> questions = new ArrayList<Question>();
-                for (DataSnapshot userSnapShot: snapshot.getChildren()) {
-                    Question q = userSnapShot.getValue(Question.class);
-                    questions.add(q);
-                }
-                callback.accept(questions);
+                QuestionSet qs = snapshot.getValue(QuestionSet.class);
+                callback.accept(qs);
             }
-
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {}
+            public void onCancelled(@NonNull  DatabaseError error) {}
         });
     }
 

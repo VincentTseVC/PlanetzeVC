@@ -46,6 +46,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        System.out.println("@@@@@@@@@@@@@@@@@@@@@");
+        System.out.println(this.getFilesDir());
+        System.out.println("@@@@@@@@@@@@@@@@@@@@@");
+
         // get UI
         emailEditText = findViewById(R.id.emailEditText);
         passowordEditText = findViewById(R.id.passwordEditText);
@@ -131,7 +135,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 return;
             }
 
-            Intent intent = new Intent(this,DashboardActivity.class);
+             Intent intent = new Intent(this,DashboardActivity.class);
+//            Intent intent = new Intent(this,ScoreActivity.class);
             intent.putExtra("user", user);
             startActivity(intent);
         });
